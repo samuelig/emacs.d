@@ -21,6 +21,7 @@
     pdf-tools
     company-irony-c-headers
     magit-gh-pulls
+    multiple-cursors
     markdown-mode
     xcscope))
 
@@ -143,7 +144,7 @@
  '(org-agenda-files (quote ("/home/siglesias/ownCloud/tasks_2019.org")))
  '(package-selected-packages
    (quote
-    (magit-gh-pulls eww-lnum company-c-headers auto-complete glsl-mode pdf-tools editorconfig company-irony irony)))
+    (multiple-cursors magit-gh-pulls eww-lnum company-c-headers auto-complete glsl-mode pdf-tools editorconfig company-irony irony)))
  '(safe-local-variable-values
    (quote
     ((eval ignore-errors
@@ -213,3 +214,9 @@
 
 (require 'magit-gh-pulls)
 (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
+
+(require 'multiple-cursors)
+(global-set-key (kbd "C-c M-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
