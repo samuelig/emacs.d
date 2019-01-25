@@ -10,6 +10,7 @@
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ("marmalade" . "https://marmalade-repo.org/packages/")
                          ("melpa" . "https://melpa.org/packages/")))
+;			 ("melpa-stable" . "https://stable.melpa.org/packages/")))
 
 (package-initialize) ;; You might already have this line
 
@@ -19,6 +20,7 @@
     editorconfig
     pdf-tools
     company-irony-c-headers
+    magit-gh-pulls
     markdown-mode
     xcscope))
 
@@ -138,10 +140,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("/home/siglesias/ownCloudPersonal/tasks.org")))
+ '(org-agenda-files (quote ("/home/siglesias/ownCloud/tasks_2019.org")))
  '(package-selected-packages
    (quote
-    (eww-lnum company-c-headers auto-complete glsl-mode pdf-tools editorconfig company-irony irony)))
+    (magit-gh-pulls eww-lnum company-c-headers auto-complete glsl-mode pdf-tools editorconfig company-irony irony)))
  '(safe-local-variable-values
    (quote
     ((eval ignore-errors
@@ -208,3 +210,6 @@
 (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+
+(require 'magit-gh-pulls)
+(add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
