@@ -19,6 +19,7 @@
     editorconfig
     pdf-tools
     company-irony-c-headers
+    markdown-mode
     xcscope))
 
 (defun install-packages ()
@@ -140,7 +141,7 @@
  '(org-agenda-files (quote ("/home/siglesias/ownCloudPersonal/tasks.org")))
  '(package-selected-packages
    (quote
-    (company-c-headers auto-complete glsl-mode pdf-tools editorconfig company-irony irony)))
+    (eww-lnum company-c-headers auto-complete glsl-mode pdf-tools editorconfig company-irony irony)))
  '(safe-local-variable-values
    (quote
     ((eval ignore-errors
@@ -202,3 +203,8 @@
 (add-to-list 'irony-supported-major-modes 'glsl-mode)
 
 (editorconfig-mode 1)
+
+(autoload 'markdown-mode "markdown-mode" nil t)
+(add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
