@@ -86,14 +86,6 @@
 
 (add-hook 'python-mode-hook 'my/python-mode-hook)
 
-(use-package auto-complete 
-:ensure t
-:init
-(progn
-(ac-config-default)
-  (global-auto-complete-mode t)
- ))
-
 (use-package flycheck
   :ensure t
   :init
