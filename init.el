@@ -22,6 +22,7 @@
     company-irony-c-headers
     magit-gh-pulls
     multiple-cursors
+    use-package
     markdown-mode
     xcscope))
 
@@ -41,23 +42,122 @@
 (global-linum-mode 1)
 ;(require 'git)
 
+(use-package company
+:ensure t
+:config
+(setq company-idle-delay 0)
+(setq company-minimum-prefix-length 3)
+
+(global-company-mode t)
+)
+
+(use-package company-irony
+:ensure t
+:config 
+(add-to-list 'company-backends 'company-irony)
+
+)
+
+(use-package irony
+:ensure t
+:config
 (add-hook 'c++-mode-hook 'irony-mode)
 (add-hook 'c-mode-hook 'irony-mode)
-(add-hook 'objc-mode-hook 'irony-mode)
-
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+)
 
-(eval-after-load 'company
-  '(add-to-list 'company-backends 'company-irony))
+(use-package irony-eldoc
+:ensure t
+:config
+(add-hook 'irony-mode-hook #'irony-eldoc))
 
-(require 'company)
-(add-hook 'after-init-hook 'global-company-mode)
+(defun my/python-mode-hook ()
+  (add-to-list 'company-backends 'company-jedi))
 
-(require 'company-irony-c-headers)
-;; Load with `irony-mode` as a grouped backend
-  (eval-after-load 'company
-    '(add-to-list
-       'company-backends '(company-irony-c-headers company-irony)))
+(add-hook 'python-mode-hook 'my/python-mode-hook)
+(use-package company-jedi
+    :ensure t
+    :config
+    (add-hook 'python-mode-hook 'jedi:setup)
+       )
+
+(defun my/python-mode-hook ()
+  (add-to-list 'company-backends 'company-jedi))
+
+(add-hook 'python-mode-hook 'my/python-mode-hook)
+
+(use-package auto-complete 
+:ensure t
+:init
+(progn
+(ac-config-default)
+  (global-auto-complete-mode t)
+ ))
+
+(use-package flycheck
+  :ensure t
+  :init
+  (global-flycheck-mode t))
+
+(setq py-python-command "python3")
+(setq python-shell-interpreter "python3")
+ 
+
+    (use-package elpy
+    :ensure t
+    :config 
+    (elpy-enable))
+
+(use-package virtualenvwrapper
+  :ensure t
+  :config
+  (venv-initialize-interactive-shells)
+  (venv-initialize-eshell))
+
+(use-package ggtags
+:ensure t
+:config 
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
+              (ggtags-mode 1))))
+)
+
+  (use-package counsel
+:ensure t
+  :bind
+  (("M-y" . counsel-yank-pop)
+   :map ivy-minibuffer-map
+   ("M-y" . ivy-next-line)))
+
+
+
+
+  (use-package ivy
+  :ensure t
+  :diminish (ivy-mode)
+  :bind (("C-x b" . ivy-switch-buffer))
+  :config
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-count-format "%d/%d ")
+  (setq ivy-display-style 'fancy))
+
+
+  (use-package swiper
+  :ensure t
+  :bind (("C-s" . swiper)
+	 ("C-r" . swiper)
+	 ("C-c C-r" . ivy-resume)
+	 ("M-x" . counsel-M-x)
+	 ("C-x C-f" . counsel-find-file))
+  :config
+  (progn
+    (ivy-mode 1)
+    (setq ivy-use-virtual-buffers t)
+    (setq ivy-display-style 'fancy)
+    (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+    ))
 
 ; Get rid of the startup message
 (setq inhibit-startup-message t)
@@ -73,9 +173,20 @@
 ; Shows column number
 (column-number-mode 1)
 ; Change default colors
-(set-background-color "grey14")
-(set-foreground-color "white")
-(set-cursor-color "white")
+;(set-background-color "grey14")
+;(set-foreground-color "white")
+;(set-cursor-color "white")
+
+(use-package doom-themes
+      :ensure t)
+(use-package doom-modeline
+      :ensure t)
+(require 'doom-modeline)
+(doom-modeline-init)
+;(load-theme 'faff t)
+(load-theme 'doom-one t)
+
+
 ; No toolbar
 (progn
   (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -178,16 +289,16 @@
  )
 
 ;; ido-mode
-(setq ido-use-filename-at-point t)
-(setq ido-enable-flex-matching t)
-(ido-mode t)
-(ido-everywhere t)
-(add-hook 'ido-setup-hook 'custom-ido-extra-keys)
-(defun custom-ido-extra-keys ()
-  "Add my keybindings for ido."
-  (define-key ido-completion-map "\C-n" 'ido-next-match)
-  (define-key ido-completion-map "\C-p" 'ido-prev-match)
-  (define-key ido-completion-map " " 'ido-exit-minibuffer))
+;(setq ido-use-filename-at-point t)
+;(setq ido-enable-flex-matching t)
+;(ido-mode t)
+;(ido-everywhere t)
+;(add-hook 'ido-setup-hook 'custom-ido-extra-keys)
+;(defun custom-ido-extra-keys ()
+;  "Add my keybindings for ido."
+;  (define-key ido-completion-map "\C-n" 'ido-next-match)
+;  (define-key ido-completion-map "\C-p" 'ido-prev-match)
+;  (define-key ido-completion-map " " 'ido-exit-minibuffer))
 
 (require 'org)
 (define-key global-map "\C-cl" 'org-store-link)
