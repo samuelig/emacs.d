@@ -7,10 +7,10 @@
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" .  "http://elpa.gnu.org/packages/")))
 
-(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-                         ("marmalade" . "https://marmalade-repo.org/packages/")
-                         ("melpa" . "https://melpa.org/packages/")))
-;			 ("melpa-stable" . "https://stable.melpa.org/packages/")))
+;(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+;                         ("marmalade" . "https://marmalade-repo.org/packages/")
+;                         ("melpa" . "https://melpa.org/packages/")))
+;;			 ("melpa-stable" . "https://stable.melpa.org/packages/")))
 
 (package-initialize) ;; You might already have this line
 
@@ -129,8 +129,8 @@
     (beginning-of-line-mark)
     )
   )
-(global-set-key (kbd "C-n") 'my-next-error)
-(global-set-key (kbd "C-p") 'my-previous-error)
+(global-set-key [f8] 'my-next-error)
+(global-set-key [f7] 'my-previous-error)
 
 (global-set-key [f5] 'my-recompile)
 
@@ -144,7 +144,7 @@
  '(org-agenda-files (quote ("/home/siglesias/ownCloud/tasks_2019.org")))
  '(package-selected-packages
    (quote
-    (multiple-cursors magit-gh-pulls eww-lnum company-c-headers auto-complete glsl-mode pdf-tools editorconfig company-irony irony)))
+    (multiple-cursors eww-lnum company-c-headers magit-gh-pulls glsl-mode pdf-tools editorconfig company-irony irony)))
  '(safe-local-variable-values
    (quote
     ((eval ignore-errors
@@ -214,9 +214,13 @@
 
 (require 'magit-gh-pulls)
 (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
+(setq magit-gh-pulls-pull-detail-limit 1000)
 
 (require 'multiple-cursors)
 (global-set-key (kbd "C-c M-c") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+(setq gnutls-log-level 2)
+
