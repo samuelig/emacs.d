@@ -27,6 +27,8 @@ It installs the following packages from MELPA repository.
 * virtualenvwrapper
 * xcscope
 
+![Emacs screenshot](https://raw.githubusercontent.com/samuelig/emacs.d/master/emacs-screenshot.png)
+
 ## Dependencies
 
 It needs some system packages to work:
