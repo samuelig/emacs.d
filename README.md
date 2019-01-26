@@ -23,7 +23,7 @@ It installs the following packages from MELPA repository.
 * multiple-cursors
 * pdf-tools
 * swiper
-* use-package (for facilitate the installation of new packages)
+* use-package
 * virtualenvwrapper
 * xcscope
 
@@ -34,11 +34,13 @@ It installs the following packages from MELPA repository.
 It needs some system packages to work:
 
 * ```markdown``` for compiling markdown files.
-* ```bear``` for creating ```compile_commands.json``` used by irony.
+* ```bear``` for creating ```compile_commands.json``` files which are consumed by irony.
 * ```clang``` used by irony.
+* ```GNU global``` used by ggtags.
+* ```exuberant-ctags``` used by ggtags.
 
 ```
-$ sudo apt install markdown bear clang
+$ sudo apt install markdown bear clang global exuberant-ctags
 ```
 
 ## Installation
@@ -54,4 +56,5 @@ And run emacs. It will automatically install everything.
 There are some commands to run after emacs finished installing the packages:
 
 ```M-x irony-install-server```
+
 ```M-x all-the-icons-install-fonts```
