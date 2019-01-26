@@ -40,7 +40,6 @@
 (setq bell-volume 0)
 
 (global-linum-mode 1)
-;(require 'git)
 
 (use-package company
 :ensure t
@@ -164,10 +163,6 @@
 (show-paren-mode 1)
 ; Shows column number
 (column-number-mode 1)
-; Change default colors
-;(set-background-color "grey14")
-;(set-foreground-color "white")
-;(set-cursor-color "white")
 
 (use-package doom-themes
       :ensure t)
@@ -189,10 +184,6 @@
 (require 'xcscope)
  (add-hook 'c-mode-common-hook' (lambda () (require 'xcscope)))
 (cscope-setup)
-
-(add-to-list 'load-path "~/.emacs/emacs.d")    ; This may not be appeared if you have already added.
-;(require 'auto-complete-config)
-;(ac-config-default)
 
 (add-hook 'c-mode-common-hook
                (lambda ()
@@ -280,18 +271,6 @@
  ;; If there is more than one, they won't work right.
  )
 
-;; ido-mode
-;(setq ido-use-filename-at-point t)
-;(setq ido-enable-flex-matching t)
-;(ido-mode t)
-;(ido-everywhere t)
-;(add-hook 'ido-setup-hook 'custom-ido-extra-keys)
-;(defun custom-ido-extra-keys ()
-;  "Add my keybindings for ido."
-;  (define-key ido-completion-map "\C-n" 'ido-next-match)
-;  (define-key ido-completion-map "\C-p" 'ido-prev-match)
-;  (define-key ido-completion-map " " 'ido-exit-minibuffer))
-
 (require 'org)
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
@@ -325,5 +304,5 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
+;; Fixes issues with magit-gh-pulls on Emacs 25
 (setq gnutls-log-level 2)
-
