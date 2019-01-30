@@ -1,16 +1,13 @@
-; (setq c-default-style "linux")
+;;; init.el --- Load the full configuration -*- lexical-binding: t -*-
+;;; Commentary:
+
+;; This file setups the configuration and automatically install packages.
+
+;;; Code:
 
 (require 'package) ;; You might already have this line
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
-(when (< emacs-major-version 24)
-  ;; For important compatibility libraries like cl-lib
-  (add-to-list 'package-archives '("gnu" .  "http://elpa.gnu.org/packages/")))
-
-;(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-;                         ("marmalade" . "https://marmalade-repo.org/packages/")
-;                         ("melpa" . "https://melpa.org/packages/")))
-;;			 ("melpa-stable" . "https://stable.melpa.org/packages/")))
 
 (package-initialize) ;; You might already have this line
 
@@ -33,54 +30,48 @@
     (package-refresh-contents))
   (dolist (package demo-packages)
     (unless (package-installed-p package)
-(package-install package))))
+      (package-install package))))
 
 (install-packages)
 
-(setq bell-volume 0)
-
-(global-linum-mode 1)
-
 (use-package company
-:ensure t
-:config
-(setq company-idle-delay 0)
-(setq company-minimum-prefix-length 3)
+  :ensure t
+  :config
+  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 3)
 
-(global-company-mode t)
-)
+  (global-company-mode t)
+  )
 
 (use-package company-irony
-:ensure t
-:config 
-(add-to-list 'company-backends 'company-irony)
+  :ensure t
+  :config
+  (add-to-list 'company-backends 'company-irony)
 
-)
+  )
 
 (use-package irony
-:ensure t
-:config
-(add-hook 'c++-mode-hook 'irony-mode)
-(add-hook 'c-mode-hook 'irony-mode)
-(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-)
+  :ensure t
+  :config
+  (add-hook 'c++-mode-hook 'irony-mode)
+  (add-hook 'c-mode-hook 'irony-mode)
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+  )
 
 (use-package irony-eldoc
-:ensure t
-:config
-(add-hook 'irony-mode-hook #'irony-eldoc))
+  :ensure t
+  :config
+  (add-hook 'irony-modei-hook #'irony-eldoc))
 
-(defun my/python-mode-hook ()
-  (add-to-list 'company-backends 'company-jedi))
-
-(add-hook 'python-mode-hook 'my/python-mode-hook)
 (use-package company-jedi
-    :ensure t
-    :config
-    (add-hook 'python-mode-hook 'jedi:setup)
-       )
+  :ensure t
+  :config
+  (add-hook 'python-mode-hook 'jedi:setup)
+  )
+
 
 (defun my/python-mode-hook ()
+  "Add company-jedi as company backend."
   (add-to-list 'company-backends 'company-jedi))
 
 (add-hook 'python-mode-hook 'my/python-mode-hook)
@@ -90,14 +81,10 @@
   :init
   (global-flycheck-mode t))
 
-(setq py-python-command "python3")
-(setq python-shell-interpreter "python3")
- 
-
-    (use-package elpy
-    :ensure t
-    :config 
-    (elpy-enable))
+(use-package elpy
+  :ensure t
+  :config
+  (elpy-enable))
 
 (use-package virtualenvwrapper
   :ensure t
@@ -106,25 +93,15 @@
   (venv-initialize-eshell))
 
 (use-package ggtags
-:ensure t
-:config 
-(add-hook 'c-mode-common-hook
-          (lambda ()
-            (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
-              (ggtags-mode 1))))
-)
+  :ensure t
+  :config
+  (add-hook 'c-mode-common-hook
+	    (lambda ()
+	      (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
+		(ggtags-mode 1))))
+  )
 
-  (use-package counsel
-:ensure t
-  :bind
-  (("M-y" . counsel-yank-pop)
-   :map ivy-minibuffer-map
-   ("M-y" . ivy-next-line)))
-
-
-
-
-  (use-package ivy
+(use-package ivy
   :ensure t
   :diminish (ivy-mode)
   :bind (("C-x b" . ivy-switch-buffer))
@@ -134,8 +111,15 @@
   (setq ivy-count-format "%d/%d ")
   (setq ivy-display-style 'fancy))
 
+(use-package counsel
+  :ensure t
+  :bind
+  (("M-y" . counsel-yank-pop)
+   :map ivy-minibuffer-map
+   ("M-y" . ivy-next-line)))
 
-  (use-package swiper
+
+(use-package swiper
   :ensure t
   :bind (("C-s" . swiper)
 	 ("C-r" . swiper)
@@ -150,47 +134,48 @@
     (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
     ))
 
+;; Global configuration
+
+; Show line numbers
+(global-linum-mode 1)
 ; Get rid of the startup message
 (setq inhibit-startup-message t)
 ; Show file full path in title bar
 (setq-default frame-title-format
-   (list '((buffer-file-name " %f"
-             (dired-directory
-              dired-directory
-              (revert-buffer-function " %b"
-              ("%b - Dir:  " default-directory)))))))
-; Shows parenthesis
+	      (list '((buffer-file-name " %f"
+					(dired-directory
+					 dired-directory
+					 (revert-buffer-function " %b"
+								 ("%b - Dir:  " default-directory)))))))
+;; Shows parenthesis
 (show-paren-mode 1)
-; Shows column number
+;; Shows column number
 (column-number-mode 1)
-
-(use-package doom-themes
-      :ensure t)
-(use-package doom-modeline
-      :ensure t)
-(require 'doom-modeline)
-(doom-modeline-init)
-(load-theme 'doom-one t)
-
-
 ; No toolbar
 (progn
   (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-;  (menu-bar-mode -1)
+					;  (menu-bar-mode -1)
   (scroll-bar-mode -1)
-)
+  )
 
-(require 'xcscope)
- (add-hook 'c-mode-common-hook' (lambda () (require 'xcscope)))
-(cscope-setup)
 
-(add-hook 'c-mode-common-hook
-               (lambda ()
-                (font-lock-add-keywords nil
-                 '(("\\<\\(FIXME\\|TODO\\|BUG\\|XXX\\):" 1 font-lock-warning-face t)))))
+;; Setup a theme
+
+(use-package doom-themes
+  :ensure t)
+(use-package doom-modeline
+  :ensure t)
+(require 'doom-modeline)
+; Initialize doom-modeline.
+(require 'doom-modeline)
+(doom-modeline-mode 1)
+(load-theme 'doom-one t)
+
+
+;; Functions
 
 (defun my-recompile ()
-  "Run compile and resize the compile window closing the old one if necessary"
+  "Run compile and resize the compile window closing the old one if necessary."
   (interactive)
   (progn
     (if (get-buffer "*compilation*") ; If old compile window exists
@@ -203,29 +188,20 @@
     (enlarge-window 20)
     )
   )
-(defun my-next-error ()
-  "Move point to next error and highlight it"
-  (interactive)
-  (progn
-    (next-error)
-    (end-of-line-nomark)
-    (beginning-of-line-mark)
-    )
-  )
-
-(defun my-previous-error ()
-  "Move point to previous error and highlight it"
-  (interactive)
-  (progn
-    (previous-error)
-    (end-of-line-nomark)
-    (beginning-of-line-mark)
-    )
-  )
-(global-set-key [f8] 'my-next-error)
-(global-set-key [f7] 'my-previous-error)
 
 (global-set-key [f5] 'my-recompile)
+
+
+;; Config packages
+
+(require 'xcscope)
+(add-hook 'c-mode-common-hook' (lambda () (require 'xcscope)))
+(cscope-setup)
+
+(add-hook 'c-mode-common-hook
+	  (lambda ()
+	    (font-lock-add-keywords nil
+				    '(("\\<\\(FIXME\\|TODO\\|BUG\\|XXX\\):" 1 font-lock-warning-face t)))))
 
 (require 'org)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
@@ -305,5 +281,9 @@
 (global-unset-key (kbd "M-<down-mouse-1>"))
 (global-set-key (kbd "M-<mouse-1>") 'mc/add-cursor-on-click)
 
+;; Miscelanea config
+
 ;; Fixes issues with magit-gh-pulls on Emacs 25
 (setq gnutls-log-level 2)
+
+;;; init.el ends here
