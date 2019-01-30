@@ -170,7 +170,6 @@
       :ensure t)
 (require 'doom-modeline)
 (doom-modeline-init)
-;(load-theme 'faff t)
 (load-theme 'doom-one t)
 
 
@@ -303,6 +302,8 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+(global-unset-key (kbd "M-<down-mouse-1>"))
+(global-set-key (kbd "M-<mouse-1>") 'mc/add-cursor-on-click)
 
 ;; Fixes issues with magit-gh-pulls on Emacs 25
 (setq gnutls-log-level 2)
