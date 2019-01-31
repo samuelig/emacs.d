@@ -38,9 +38,11 @@ It needs some system packages to work:
 * ```clang``` used by irony.
 * ```GNU global``` used by ggtags.
 * ```exuberant-ctags``` used by ggtags.
+* ```cscope```
+* ```python-jedi```, ```python3-jedi```, ```virtualenv``` for python.
 
 ```
-$ sudo apt install markdown bear clang global exuberant-ctags
+$ sudo apt install markdown bear clang global exuberant-ctags cscope python-jedi python3-jedi virtualenv
 ```
 
 ## Installation
