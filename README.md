@@ -60,3 +60,5 @@ There are some commands to run after emacs finished installing the packages:
 ```M-x irony-install-server```
 
 ```M-x all-the-icons-install-fonts```
+
+```M-x jedi-install-server```
