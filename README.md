@@ -22,6 +22,7 @@ It installs the following packages from MELPA repository.
 * markdown-mode
 * multiple-cursors
 * pdf-tools
+* speedbar
 * swiper
 * use-package
 * virtualenvwrapper

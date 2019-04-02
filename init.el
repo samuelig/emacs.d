@@ -20,6 +20,7 @@
     magit-gh-pulls
     multiple-cursors
     use-package
+    speedbar
     markdown-mode
     xcscope))
 
@@ -280,6 +281,8 @@
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 (global-unset-key (kbd "M-<down-mouse-1>"))
 (global-set-key (kbd "M-<mouse-1>") 'mc/add-cursor-on-click)
+
+(global-set-key (kbd "<f8>") 'speedbar)
 
 ;; Miscelanea config
 
