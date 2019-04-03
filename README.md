@@ -13,6 +13,7 @@ It installs the following packages from MELPA repository.
 * editorconfig
 * elpy
 * flycheck
+* flycheck-irony
 * ggtags
 * glsl-mode
 * irony
