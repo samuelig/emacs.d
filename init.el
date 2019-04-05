@@ -297,7 +297,12 @@
 ;; Fixes issues with magit-gh-pulls on Emacs 25
 (setq gnutls-log-level 2)
 
-;; Insert <tab> whenever I press the key, I can use C-q <TAB> meanwhile
-;; (global-set-key (kbd "TAB") 'self-insert-command);
+;; Insert <tab> whenever I press the key
+(defun my-self-insert-command ()
+  "Insert a tab char. (ASCII 9, \t)"
+  (interactive)
+  (insert "\t"))
+
+(global-set-key (kbd "<backtab>") 'my-self-insert-command);
 
 ;;; init.el ends here
