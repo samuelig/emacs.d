@@ -20,6 +20,7 @@ It installs the following packages from MELPA repository.
 * irony-eldoc
 * ivy
 * magit-gh-pulls
+* magit-todos
 * markdown-mode
 * multiple-cursors
 * pdf-tools

@@ -18,6 +18,7 @@
     pdf-tools
     company-irony-c-headers
     magit-gh-pulls
+    magit-todos
     multiple-cursors
     use-package
     speedbar
@@ -219,10 +220,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("/home/siglesias/ownCloud/tasks_2019.org")))
+ '(org-agenda-files (quote ("/home/siglesias/Nextcloud/tasks_2019.org")))
  '(package-selected-packages
    (quote
-    (multiple-cursors eww-lnum company-c-headers magit-gh-pulls glsl-mode pdf-tools editorconfig company-irony irony)))
+    (magit-todos multiple-cursors eww-lnum company-c-headers magit-gh-pulls glsl-mode pdf-tools editorconfig company-irony irony)))
  '(safe-local-variable-values
    (quote
     ((eval ignore-errors
@@ -291,6 +292,9 @@
 (global-set-key (kbd "M-<mouse-1>") 'mc/add-cursor-on-click)
 
 (global-set-key (kbd "<f8>") 'speedbar)
+
+(require 'magit-todos)
+(require 'hl-todo)
 
 ;; Miscelanea config
 
