@@ -321,4 +321,13 @@
 ; Org-mode: open automatically my TODO list.
 (find-file "~/Nextcloud/tasks_2019.org")
 
+; Set compile directory with M-X
+(defun in-directory (dir)
+  "Runs execute-extended-command with default-directory set to the given
+directory."
+  (interactive "DIn directory: ")
+  (let ((default-directory dir))
+    (call-interactively 'execute-extended-command)))
+
+(global-set-key (kbd "M-X") 'in-directory)
 ;;; init.el ends here
