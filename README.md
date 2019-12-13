@@ -44,8 +44,16 @@ It needs some system packages to work:
 * ```cscope```
 * ```python-jedi```, ```python3-jedi```, ```virtualenv``` for python.
 
+For Debian:
+
 ```
 $ sudo apt install markdown bear clang global exuberant-ctags cscope python-jedi python3-jedi virtualenv
+```
+
+For Fedora:
+
+```
+$ sudo dnf install perl-Text-Markdown bear clang global ctags-etags cscope python-jedi python3-jedi virtualenv
 ```
 
 ## Installation
