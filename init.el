@@ -319,7 +319,7 @@
 (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
 
 ; Org-mode: open automatically my TODO list.
-(find-file "~/Nextcloud/tasks_2019.org")
+(find-file "~/Nextcloud/tasks_2020.org")
 
 ; Set compile directory with M-X
 (defun in-directory (dir)
