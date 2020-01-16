@@ -318,9 +318,6 @@
 
 (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
 
-; Org-mode: open automatically my TODO list.
-(find-file "~/Nextcloud/tasks_2020.org.gpg")
-
 ; Set compile directory with M-X
 (defun in-directory (dir)
   "Runs execute-extended-command with default-directory set to the given
