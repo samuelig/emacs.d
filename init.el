@@ -17,7 +17,6 @@
     editorconfig
     pdf-tools
     company-irony-c-headers
-    magit-gh-pulls
     magit-todos
     multiple-cursors
     use-package
@@ -223,7 +222,7 @@
  '(org-agenda-files (quote ("~/Nextcloud/tasks_2019.org")))
  '(package-selected-packages
    (quote
-    (magit-todos multiple-cursors eww-lnum company-c-headers magit-gh-pulls glsl-mode pdf-tools editorconfig company-irony irony)))
+    (magit-todos multiple-cursors eww-lnum company-c-headers glsl-mode pdf-tools editorconfig company-irony irony)))
  '(safe-local-variable-values
    (quote
     ((eval ignore-errors
@@ -279,10 +278,6 @@
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 
-(require 'magit-gh-pulls)
-(add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
-(setq magit-gh-pulls-pull-detail-limit 1000)
-
 (require 'multiple-cursors)
 (global-set-key (kbd "C-c M-c") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
@@ -297,9 +292,6 @@
 (require 'hl-todo)
 
 ;; Miscelanea config
-
-;; Fixes issues with magit-gh-pulls on Emacs 25
-(setq gnutls-log-level 2)
 
 ;; Insert <tab> whenever I press the key
 (defun my-self-insert-command ()
