@@ -10,7 +10,6 @@ It installs the following packages from MELPA repository.
 * company-jedi
 * company-lsp
 * counsel
-* dap-mode
 * doom-modeline
 * doom-themes
 * editorconfig

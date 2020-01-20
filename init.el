@@ -16,7 +16,6 @@
     company-irony
     company-irony-c-headers
     company-lsp
-    dap-mode
     editorconfig
     glsl-mode
     lsp-mode
@@ -295,6 +294,7 @@
   (lsp-auto-guess-root nil)
   (lsp-prefer-flymake nil) ; Use flycheck instead of flymake
   (lsp-file-watch-threshold 2000)
+  (lsp-enable-file-watchers 1)
   (read-process-output-max (* 1024 1024))
   :bind (:map lsp-mode-map ("C-c C-f" . lsp-format-buffer))
   :hook ((java-mode python-mode go-mode
@@ -333,28 +333,6 @@
     (setq mode-line-format nil)))
 ;; -LSPUI
 
-;; DAPPac
-(use-package dap-mode
-  :diminish
-  :bind
-  (:map dap-mode-map
-        (("<f12>" . dap-debug)
-         ("<f8>" . dap-continue)
-         ("<f9>" . dap-next)
-         ("<M-f11>" . dap-step-in)
-         ("C-M-<f11>" . dap-step-out)
-         ("<f7>" . dap-breakpoint-toggle)))
-  :hook ((after-init . dap-mode)
-         (dap-mode . dap-ui-mode)
-         (python-mode . (lambda () (require 'dap-python)))
-         (ruby-mode . (lambda () (require 'dap-ruby)))
-         (go-mode . (lambda () (require 'dap-go)))
-         (java-mode . (lambda () (require 'dap-java)))
-         (php-mode . (lambda () (require 'dap-php)))
-         (elixir-mode . (lambda () (require 'dap-elixir)))
-         ((js-mode js2-mode typescript-mode) . (lambda () (require 'dap-chrome)))))
-;; -DAPPac
-
 (use-package company-lsp :commands company-lsp)
 
 (provide 'init-lsp)
@@ -364,7 +342,6 @@
          (lambda () (require 'ccls) (lsp))))
 
 ;; optionally if you want to use debugger
-(use-package dap-mode)
 
 ;; Miscelanea config
 
