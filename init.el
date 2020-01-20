@@ -21,8 +21,7 @@
     multiple-cursors
     use-package
     speedbar
-    markdown-mode
-    xcscope))
+    markdown-mode))
 
 (defun install-packages ()
   "Install all required packages."
@@ -202,10 +201,6 @@
 
 
 ;; Config packages
-
-(require 'xcscope)
-(add-hook 'c-mode-common-hook' (lambda () (require 'xcscope)))
-(cscope-setup)
 
 (add-hook 'c-mode-common-hook
 	  (lambda ()

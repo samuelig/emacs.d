@@ -19,7 +19,6 @@ It installs the following packages from MELPA repository.
 * irony
 * irony-eldoc
 * ivy
-* magit-gh-pulls
 * magit-todos
 * markdown-mode
 * multiple-cursors
@@ -28,7 +27,6 @@ It installs the following packages from MELPA repository.
 * swiper
 * use-package
 * virtualenvwrapper
-* xcscope
 
 ![Emacs screenshot](https://raw.githubusercontent.com/samuelig/emacs.d/master/emacs-screenshot.png)
 
@@ -41,19 +39,18 @@ It needs some system packages to work:
 * ```clang``` used by irony.
 * ```GNU global``` used by ggtags.
 * ```exuberant-ctags``` used by ggtags.
-* ```cscope```
 * ```python-jedi```, ```python3-jedi```, ```virtualenv``` for python.
 
 For Debian:
 
 ```
-$ sudo apt install markdown bear clang global exuberant-ctags cscope python-jedi python3-jedi virtualenv
+$ sudo apt install markdown bear clang global exuberant-ctags python-jedi python3-jedi virtualenv
 ```
 
 For Fedora:
 
 ```
-$ sudo dnf install perl-Text-Markdown bear clang global ctags-etags cscope python-jedi python3-jedi virtualenv
+$ sudo dnf install perl-Text-Markdown bear clang global ctags-etags python-jedi python3-jedi virtualenv
 ```
 
 ## Installation
