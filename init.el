@@ -12,16 +12,21 @@
 (package-initialize) ;; You might already have this line
 
 (defconst demo-packages
-  '(company-irony
-    glsl-mode
-    editorconfig
-    pdf-tools
+  '(ccls
+    company-irony
     company-irony-c-headers
+    company-lsp
+    dap-mode
+    editorconfig
+    glsl-mode
+    lsp-mode
+    lsp-ui
+    pdf-tools
     magit-todos
     multiple-cursors
-    use-package
     speedbar
-    markdown-mode))
+    markdown-mode
+    use-package))
 
 (defun install-packages ()
   "Install all required packages."
@@ -33,6 +38,12 @@
       (package-install package))))
 
 (install-packages)
+
+(use-package projectile)
+
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 (use-package company
   :ensure t
@@ -59,7 +70,6 @@
   :config
   (eval-after-load 'company '(add-to-list 'company-backends 'company-irony))
   )
-
 
 (use-package irony-eldoc
   :ensure t
@@ -99,15 +109,6 @@
   :config
   (venv-initialize-interactive-shells)
   (venv-initialize-eshell))
-
-(use-package ggtags
-  :ensure t
-  :config
-  (add-hook 'c-mode-common-hook
-	    (lambda ()
-	      (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
-		(ggtags-mode 1))))
-  )
 
 (use-package ivy
   :ensure t
