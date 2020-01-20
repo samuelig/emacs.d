@@ -4,10 +4,13 @@ This is a copy of the emacs.d/ setup I use for C/C++ development.
 
 It installs the following packages from MELPA repository.
 
+* ccls
 * company-irony
 * company-irony-c-headers
 * company-jedi
+* company-lsp
 * counsel
+* dap-mode
 * doom-modeline
 * doom-themes
 * editorconfig
@@ -19,6 +22,7 @@ It installs the following packages from MELPA repository.
 * irony
 * irony-eldoc
 * ivy
+* lsp-ui
 * magit-todos
 * markdown-mode
 * multiple-cursors
@@ -40,17 +44,18 @@ It needs some system packages to work:
 * ```GNU global``` used by ggtags.
 * ```exuberant-ctags``` used by ggtags.
 * ```python-jedi```, ```python3-jedi```, ```virtualenv``` for python.
+* ```ccls``` as C/C++/ObjC language server (for LSP).
 
 For Debian:
 
 ```
-$ sudo apt install markdown bear clang global exuberant-ctags python-jedi python3-jedi virtualenv
+$ sudo apt install markdown bear clang global exuberant-ctags python-jedi python3-jedi virtualenv ccls
 ```
 
 For Fedora:
 
 ```
-$ sudo dnf install perl-Text-Markdown bear clang global ctags-etags python-jedi python3-jedi virtualenv
+$ sudo dnf install perl-Text-Markdown bear clang global ctags-etags python-jedi python3-jedi virtualenv ccls
 ```
 
 ## Installation

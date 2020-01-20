@@ -217,7 +217,7 @@
  '(org-agenda-files (quote ("~/Nextcloud/tasks_2019.org")))
  '(package-selected-packages
    (quote
-    (magit-todos multiple-cursors eww-lnum company-c-headers glsl-mode pdf-tools editorconfig company-irony irony)))
+    (ccls dap-mode lsp-ui company-lsp magit-todos multiple-cursors eww-lnum company-c-headers glsl-mode pdf-tools editorconfig company-irony irony)))
  '(safe-local-variable-values
    (quote
     ((eval ignore-errors
@@ -285,6 +285,17 @@
 
 (require 'magit-todos)
 (require 'hl-todo)
+
+(use-package lsp-mode :commands lsp)
+(use-package lsp-ui :commands lsp-ui-mode)
+(use-package company-lsp :commands company-lsp)
+
+(use-package ccls
+  :hook ((c-mode c++-mode objc-mode cuda-mode) .
+         (lambda () (require 'ccls) (lsp))))
+
+;; optionally if you want to use debugger
+(use-package dap-mode)
 
 ;; Miscelanea config
 
