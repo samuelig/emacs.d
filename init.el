@@ -190,7 +190,7 @@
  '(org-agenda-files (quote ("~/Nextcloud/tasks_2020.org.gpg")))
  '(package-selected-packages
    (quote
-    (ccls dap-mode lsp-ui company-lsp magit-todos multiple-cursors eww-lnum company-c-headers pdf-tools editorconfig )))
+    (webpaste ccls dap-mode lsp-ui company-lsp magit-todos multiple-cursors eww-lnum company-c-headers pdf-tools editorconfig)))
  '(safe-local-variable-values
    (quote
     ((eval ignore-errors
@@ -300,6 +300,14 @@
   :hook ((c-mode c++-mode objc-mode cuda-mode) .
          (lambda () (require 'ccls) (lsp))))
 
+(use-package webpaste
+  :ensure t
+  :bind (("C-c C-p C-b" . webpaste-paste-buffer)
+         ("C-c C-p C-r" . webpaste-paste-region))
+  :config
+  (progn
+    (setq webpaste-provider-priority '("dpaste.org"))))
+
 ;; optionally if you want to use debugger
 
 ;; Miscelanea config
@@ -335,3 +343,10 @@ directory."
 (require 'epa-file)
 (epa-file-enable)
 ;;; init.el ends here
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(lsp-ui-doc-background ((t (:background nil))))
+ '(lsp-ui-doc-header ((t (:inherit (font-lock-string-face italic))))))

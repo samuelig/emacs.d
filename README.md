@@ -24,6 +24,7 @@ It installs the following packages from MELPA repository.
 * swiper
 * use-package
 * virtualenvwrapper
+* webpaste
 
 ![Emacs screenshot](https://raw.githubusercontent.com/samuelig/emacs.d/master/emacs-screenshot.png)
 
