@@ -13,11 +13,8 @@
 
 (defconst demo-packages
   '(ccls
-    company-irony
-    company-irony-c-headers
     company-lsp
     editorconfig
-    glsl-mode
     lsp-mode
     lsp-ui
     pdf-tools
@@ -54,28 +51,6 @@
   (global-company-mode t)
   )
 
-(use-package irony
-  :ensure t
-  :config
-  (add-hook 'c++-mode-hook 'irony-mode)
-  (add-hook 'c-mode-hook 'irony-mode)
-  ;; Use compilation database first, clang_complete as fallback.
-  (setq-default irony-cdb-compilation-databases '(irony-cdb-libclang
-                                                  irony-cdb-clang-complete))
-  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-  )
-
-(use-package company-irony
-  :ensure t
-  :config
-  (eval-after-load 'company '(add-to-list 'company-backends 'company-irony))
-  )
-
-(use-package irony-eldoc
-  :ensure t
-  :config
-  (add-hook 'irony-modei-hook #'irony-eldoc))
-
 (use-package company-jedi
   :ensure t
   :config
@@ -93,11 +68,6 @@
   :ensure t
   :init
   (global-flycheck-mode t))
-
-(use-package flycheck-irony
-  :ensure t
-  :config
-  (eval-after-load 'flycheck '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup)))
 
 (use-package elpy
   :ensure t
@@ -215,10 +185,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("~/Nextcloud/tasks_2019.org")))
+ '(company-box-enable-icon t)
+ '(company-box-show-single-candidate t)
+ '(org-agenda-files (quote ("~/Nextcloud/tasks_2020.org.gpg")))
  '(package-selected-packages
    (quote
-    (ccls dap-mode lsp-ui company-lsp magit-todos multiple-cursors eww-lnum company-c-headers glsl-mode pdf-tools editorconfig company-irony irony)))
+    (ccls dap-mode lsp-ui company-lsp magit-todos multiple-cursors eww-lnum company-c-headers pdf-tools editorconfig )))
  '(safe-local-variable-values
    (quote
     ((eval ignore-errors
@@ -244,12 +216,6 @@
 	   (c-set-offset
 	    (quote inline-open)
 	    (quote 0)))))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 
 (require 'org)
 (define-key global-map "\C-cl" 'org-store-link)
@@ -258,14 +224,6 @@
 
 (global-linum-mode 0)
 (pdf-tools-install)
-
-(autoload 'glsl-mode "glsl-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.glsl\\'" . glsl-mode))
-(add-to-list 'auto-mode-alist '("\\.vert\\'" . glsl-mode))
-(add-to-list 'auto-mode-alist '("\\.frag\\'" . glsl-mode))
-(add-to-list 'auto-mode-alist '("\\.geom\\'" . glsl-mode))
-(require 'irony)
-(add-to-list 'irony-supported-major-modes 'glsl-mode)
 
 (editorconfig-mode 1)
 

@@ -6,8 +6,6 @@ It installs the following packages from MELPA repository.
 
 * ccls
 * company-irony
-* company-irony-c-headers
-* company-jedi
 * company-lsp
 * counsel
 * doom-modeline
@@ -15,10 +13,6 @@ It installs the following packages from MELPA repository.
 * editorconfig
 * elpy
 * flycheck
-* flycheck-irony
-* glsl-mode
-* irony
-* irony-eldoc
 * ivy
 * lsp-ui
 * magit-todos
@@ -68,8 +62,6 @@ And run emacs. It will automatically install everything.
 ## Post-installation
 
 There are some commands to run after emacs finished installing the packages:
-
-```M-x irony-install-server```
 
 ```M-x all-the-icons-install-fonts```
 
