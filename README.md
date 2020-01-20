@@ -17,7 +17,6 @@ It installs the following packages from MELPA repository.
 * elpy
 * flycheck
 * flycheck-irony
-* ggtags
 * glsl-mode
 * irony
 * irony-eldoc
@@ -27,6 +26,7 @@ It installs the following packages from MELPA repository.
 * markdown-mode
 * multiple-cursors
 * pdf-tools
+* projectile
 * speedbar
 * swiper
 * use-package
@@ -49,13 +49,13 @@ It needs some system packages to work:
 For Debian:
 
 ```
-$ sudo apt install markdown bear clang global exuberant-ctags python-jedi python3-jedi virtualenv ccls
+$ sudo apt install markdown bear clang clang-dev exuberant-ctags python-jedi python3-jedi virtualenv ccls
 ```
 
 For Fedora:
 
 ```
-$ sudo dnf install perl-Text-Markdown bear clang global ctags-etags python-jedi python3-jedi virtualenv ccls
+$ sudo dnf install perl-Text-Markdown bear clang clang-devel ctags-etags python-jedi python3-jedi virtualenv ccls
 ```
 
 ## Installation
