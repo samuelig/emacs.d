@@ -43,6 +43,7 @@
 (projectile-mode +1)
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+(add-to-list 'projectile-globally-ignored-directories "build")
 
 (use-package company
   :ensure t
@@ -294,7 +295,7 @@
   (lsp-auto-guess-root nil)
   (lsp-prefer-flymake nil) ; Use flycheck instead of flymake
   (lsp-file-watch-threshold 2000)
-  (lsp-enable-file-watchers 1)
+  (lsp-enable-file-watchers nil)
   (read-process-output-max (* 1024 1024))
   :bind (:map lsp-mode-map ("C-c C-f" . lsp-format-buffer))
   :hook ((java-mode python-mode go-mode
