@@ -20,7 +20,7 @@
     pdf-tools
     magit-todos
     multiple-cursors
-    speedbar
+    sr-speedbar
     markdown-mode
     use-package))
 
@@ -190,7 +190,7 @@
  '(org-agenda-files (quote ("~/Nextcloud/tasks_2020.org.gpg")))
  '(package-selected-packages
    (quote
-    (webpaste ccls dap-mode lsp-ui company-lsp magit-todos multiple-cursors eww-lnum company-c-headers pdf-tools editorconfig)))
+    (sr-speedbar webpaste ccls dap-mode lsp-ui company-lsp magit-todos multiple-cursors eww-lnum company-c-headers pdf-tools editorconfig)))
  '(safe-local-variable-values
    (quote
     ((eval ignore-errors
@@ -240,7 +240,7 @@
 (global-unset-key (kbd "M-<down-mouse-1>"))
 (global-set-key (kbd "M-<mouse-1>") 'mc/add-cursor-on-click)
 
-(global-set-key (kbd "<f8>") 'speedbar)
+(global-set-key (kbd "<f8>") 'sr-speedbar-toggle)
 
 (require 'magit-todos)
 (require 'hl-todo)
