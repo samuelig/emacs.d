@@ -308,8 +308,6 @@
   (progn
     (setq webpaste-provider-priority '("dpaste.org"))))
 
-;; optionally if you want to use debugger
-
 ;; Miscelanea config
 
 ;; Insert <tab> whenever I press the key
