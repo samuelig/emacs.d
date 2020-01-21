@@ -72,7 +72,7 @@ There are some commands to run after emacs finished installing the packages:
    * [Cmake](https://sarcasm.github.io/notes/dev/compilation-database.html#cmake), [Ninja](https://sarcasm.github.io/notes/dev/compilation-database.html#ninja), [Bear](https://sarcasm.github.io/notes/dev/compilation-database.html#bear-and-intercept-build).
 
 * Added keybinding ```M-X``` to set working directory to apply other command. Very useful to execute ```M-x compile```.
-* Added support for opening encrypter (*.gpg) files.
+* Added support for opening encrypted (*.gpg) files.
 * ```<F8>``` toggles speedbar window.
 * ```<F9>``` toggles treemacs window.
 * Webpaste:
