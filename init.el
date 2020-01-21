@@ -46,7 +46,7 @@
   :after treemacs projectile
   :ensure t)
 
-(global-set-key (kbd "<f9>") 'treemacs-select-window)
+(global-set-key (kbd "<f9>") 'treemacs)
 
 (use-package company
   :ensure t
