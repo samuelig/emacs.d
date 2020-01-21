@@ -156,27 +156,6 @@
 (doom-modeline-mode 1)
 (load-theme 'doom-one t)
 
-
-;; Functions
-
-(defun my-recompile ()
-  "Run compile and resize the compile window closing the old one if necessary."
-  (interactive)
-  (progn
-    (if (get-buffer "*compilation*") ; If old compile window exists
- 	(progn
- 	  (delete-windows-on (get-buffer "*compilation*")) ; Delete the compilation windows
- 	  (kill-buffer "*compilation*") ; and kill the buffers
- 	  )
-      )
-    (call-interactively 'compile)
-    (enlarge-window 20)
-    )
-  )
-
-(global-set-key [f5] 'my-recompile)
-
-
 ;; Config packages
 
 (add-hook 'c-mode-common-hook
