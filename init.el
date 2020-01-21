@@ -42,6 +42,12 @@
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (add-to-list 'projectile-globally-ignored-directories "build")
 
+(use-package treemacs-projectile
+  :after treemacs projectile
+  :ensure t)
+
+(global-set-key (kbd "<f9>") 'treemacs-select-window)
+
 (use-package company
   :ensure t
   :config
@@ -190,7 +196,7 @@
  '(org-agenda-files (quote ("~/Nextcloud/tasks_2020.org.gpg")))
  '(package-selected-packages
    (quote
-    (sr-speedbar webpaste ccls dap-mode lsp-ui company-lsp magit-todos multiple-cursors eww-lnum company-c-headers pdf-tools editorconfig)))
+    (treemacs-projectile sr-speedbar webpaste ccls dap-mode lsp-ui company-lsp magit-todos multiple-cursors eww-lnum company-c-headers pdf-tools editorconfig)))
  '(safe-local-variable-values
    (quote
     ((eval ignore-errors

@@ -23,6 +23,7 @@ It installs the following packages from MELPA repository.
 * speedbar
 * swiper
 * use-package
+* treemacs-projectile
 * virtualenvwrapper
 * webpaste
 
@@ -76,4 +77,5 @@ There are some commands to run after emacs finished installing the packages:
 * Added keybinding ```M-X``` to set working directory to apply other command. Very useful to execute ```M-x compile```.
 * Added support for opening encrypter (*.gpg) files.
 * ```<F8>``` launches speedbar.
+* ```<F9>``` launches treemacs.
 * ```M-.``` looks for code definitions, using ccls as backend. It uses ctags as a fallback.
