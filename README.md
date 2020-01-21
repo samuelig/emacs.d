@@ -75,12 +75,11 @@ There are some commands to run after emacs finished installing the packages:
 * Added support for opening encrypter (*.gpg) files.
 * ```<F8>``` toggles speedbar window.
 * ```<F9>``` toggles treemacs window.
-* ```M-.``` looks for code definitions, using ccls as backend. It uses ctags as a fallback.
 * Webpaste:
   * ```C-c C-p C-r``` send region to dpaste.org.
   * ```C-c C-p C-b``` send buffer to dpaste.org.
 * ```S-TAB``` inserts TAB inconditionally (specially useful for indexing code).
-* ```M-.``` find definition of a type/function/variable in C/C++ projects.
-* ```M-?``` find references of a type/function/variable in C/C++ projects.
+* ```M-.``` looks for code definitions, using ccls as backend (C/C++ projects).
+* ```M-?``` finds code references, using ccls as backend (C/C++ projects).
 * ```M-<mouse-1>``` adds new cursor (multiple-cursors). There are more keybindings in the init.d related to multiple-cursors package.
 * There are also keybindings for org-mode. TBD.
