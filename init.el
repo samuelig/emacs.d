@@ -269,8 +269,8 @@
   (lsp-ui-sideline-show-code-actions nil)
   :config
   ;; Use lsp-ui-doc-webkit only in GUI
-  (if *sys/gui*
-      (setq lsp-ui-doc-use-webkit t))
+  ;; (if *sys/gui*
+  ;;     (setq lsp-ui-doc-use-webkit t))
   ;; WORKAROUND Hide mode-line of the lsp-ui-imenu buffer
   ;; https://github.com/emacs-lsp/lsp-ui/issues/243
   (defadvice lsp-ui-imenu (after hide-lsp-ui-imenu-mode-line activate)
@@ -303,7 +303,7 @@
 
 (global-set-key (kbd "<backtab>") 'my-self-insert-command);
 
-; Org-mode: switch entry to DONE when all subentries are done.
+;; Org-mode: switch entry to DONE when all subentries are done.
 
 (defun org-summary-todo (n-done n-not-done)
   "Switch entry to DONE when all subentries are done, to TODO otherwise."
@@ -312,7 +312,7 @@
 
 (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
 
-; Set compile directory with M-X
+;; Set compile directory with M-X
 (defun in-directory (dir)
   "Runs execute-extended-command with default-directory set to the given
 directory."
@@ -322,9 +322,14 @@ directory."
 
 (global-set-key (kbd "M-X") 'in-directory)
 
-; Encryption support
+;; Encryption support
 (require 'epa-file)
 (epa-file-enable)
+
+;; Enable desktop save mode to save sessions
+(desktop-save-mode)
+(add-to-list 'desktop-globals-to-save 'register-alist)
+
 ;;; init.el ends here
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
