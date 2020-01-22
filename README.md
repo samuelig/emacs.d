@@ -6,13 +6,13 @@ It installs the following packages from MELPA repository.
 
 * ccls
 * company-lsp
-* counsel
 * doom-modeline
 * doom-themes
 * editorconfig
 * elpy
 * flycheck
-* ivy
+* ggtags
+* helm
 * lsp-ui
 * magit-todos
 * markdown-mode
@@ -20,7 +20,6 @@ It installs the following packages from MELPA repository.
 * pdf-tools
 * projectile
 * speedbar
-* swiper
 * use-package
 * treemacs-projectile
 * virtualenvwrapper
@@ -37,17 +36,18 @@ It needs some system packages to work:
 * ```clang``` used by company-lsp if ccls is not present.
 * ```python-jedi```, ```python3-jedi```, ```virtualenv``` for python.
 * ```ccls``` as C/C++/ObjC language server (for LSP).
+* ```global``` for creating GTAGS.
 
 For Debian:
 
 ```
-$ sudo apt install markdown bear clang python-jedi python3-jedi virtualenv ccls
+$ sudo apt install markdown bear clang python-jedi python3-jedi virtualenv ccls global
 ```
 
 For Fedora:
 
 ```
-$ sudo dnf install perl-Text-Markdown bear clang python-jedi python3-jedi virtualenv ccls
+$ sudo dnf install perl-Text-Markdown bear clang python-jedi python3-jedi virtualenv ccls global
 ```
 
 ## Installation

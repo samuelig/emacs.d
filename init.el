@@ -86,38 +86,167 @@
   (venv-initialize-interactive-shells)
   (venv-initialize-eshell))
 
-(use-package ivy
-  :ensure t
-  :diminish (ivy-mode)
-  :bind (("C-x b" . ivy-switch-buffer))
-  :config
-  (ivy-mode 1)
-  (setq ivy-use-virtual-buffers t)
-  (setq ivy-count-format "%d/%d ")
-  (setq ivy-display-style 'fancy))
-
-(use-package counsel
-  :ensure t
-  :bind
-  (("M-y" . counsel-yank-pop)
-   :map ivy-minibuffer-map
-   ("M-y" . ivy-next-line)))
-
-
-(use-package swiper
-  :ensure t
-  :bind (("C-s" . swiper)
-	 ("C-r" . swiper)
-	 ("C-c C-r" . ivy-resume)
-	 ("M-x" . counsel-M-x)
-	 ("C-x C-f" . counsel-find-file))
-  :config
+(use-package helm
+  :init
   (progn
-    (ivy-mode 1)
-    (setq ivy-use-virtual-buffers t)
-    (setq ivy-display-style 'fancy)
-    (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
-    ))
+    (require 'helm-config)
+    (require 'helm-grep)
+    ;; To fix error at compile:
+    ;; Error (bytecomp): Forgot to expand macro with-helm-buffer in
+    ;; (with-helm-buffer helm-echo-input-in-header-line)
+    (if (version< "26.0.50" emacs-version)
+        (eval-when-compile (require 'helm-lib)))
+
+    (defun helm-hide-minibuffer-maybe ()
+      (when (with-helm-buffer helm-echo-input-in-header-line)
+        (let ((ov (make-overlay (point-min) (point-max) nil nil t)))
+          (overlay-put ov 'window (selected-window))
+          (overlay-put ov 'face (let ((bg-color (face-background 'default nil)))
+                                  `(:background ,bg-color :foreground ,bg-color)))
+          (setq-local cursor-type nil))))
+
+    (add-hook 'helm-minibuffer-set-up-hook 'helm-hide-minibuffer-maybe)
+    ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
+    ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
+    ;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
+    (global-set-key (kbd "C-c h") 'helm-command-prefix)
+    (global-unset-key (kbd "C-x c"))
+
+    (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebihnd tab to do persistent action
+    (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
+    (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
+
+    (define-key helm-grep-mode-map (kbd "<return>")  'helm-grep-mode-jump-other-window)
+    (define-key helm-grep-mode-map (kbd "n")  'helm-grep-mode-jump-other-window-forward)
+    (define-key helm-grep-mode-map (kbd "p")  'helm-grep-mode-jump-other-window-backward)
+
+    (when (executable-find "curl")
+      (setq helm-google-suggest-use-curl-p t))
+
+    (setq helm-google-suggest-use-curl-p t
+          helm-scroll-amount 4 ; scroll 4 lines other window using M-<next>/M-<prior>
+          ;; helm-quick-update t ; do not display invisible candidates
+          helm-ff-search-library-in-sexp t ; search for library in `require' and `declare-function' sexp.
+
+          ;; you can customize helm-do-grep to execute ack-grep
+          ;; helm-grep-default-command "ack-grep -Hn --smart-case --no-group --no-color %e %p %f"
+          ;; helm-grep-default-recurse-command "ack-grep -H --smart-case --no-group --no-color %e %p %f"
+          helm-split-window-in-side-p t ;; open helm buffer inside current window, not occupy whole other window
+
+          helm-echo-input-in-header-line t
+
+          ;; helm-candidate-number-limit 500 ; limit the number of displayed canidates
+          helm-ff-file-name-history-use-recentf t
+          helm-move-to-line-cycle-in-source t ; move to end or beginning of source when reaching top or bottom of source.
+          helm-buffer-skip-remote-checking t
+
+          helm-mode-fuzzy-match t
+
+          helm-buffers-fuzzy-matching t ; fuzzy matching buffer names when non-nil
+                                        ; useful in helm-mini that lists buffers
+          helm-org-headings-fontify t
+          ;; helm-find-files-sort-directories t
+          ;; ido-use-virtual-buffers t
+          helm-semantic-fuzzy-match t
+          helm-M-x-fuzzy-match t
+          helm-imenu-fuzzy-match t
+          helm-lisp-fuzzy-completion t
+          ;; helm-apropos-fuzzy-match t
+          helm-buffer-skip-remote-checking t
+          helm-locate-fuzzy-match t
+          helm-display-header-line nil)
+
+    (add-to-list 'helm-sources-using-default-as-input 'helm-source-man-pages)
+
+    (global-set-key (kbd "M-x") 'helm-M-x)
+    (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+    (global-set-key (kbd "C-x b") 'helm-buffers-list)
+    (global-set-key (kbd "C-x C-f") 'helm-find-files)
+    (global-set-key (kbd "C-c r") 'helm-recentf)
+    (global-set-key (kbd "C-h SPC") 'helm-all-mark-rings)
+    (global-set-key (kbd "C-c h o") 'helm-occur)
+    (global-set-key (kbd "C-c h o") 'helm-occur)
+
+    (global-set-key (kbd "C-c h w") 'helm-wikipedia-suggest)
+    (global-set-key (kbd "C-c h g") 'helm-google-suggest)
+
+    (global-set-key (kbd "C-c h x") 'helm-register)
+    ;; (global-set-key (kbd "C-x r j") 'jump-to-register)
+
+    (define-key 'help-command (kbd "C-f") 'helm-apropos)
+    (define-key 'help-command (kbd "r") 'helm-info-emacs)
+    (define-key 'help-command (kbd "C-l") 'helm-locate-library)
+
+    ;; use helm to list eshell history
+    (add-hook 'eshell-mode-hook
+              #'(lambda ()
+                  (define-key eshell-mode-map (kbd "M-l")  'helm-eshell-history)))
+
+;;; Save current position to mark ring
+    (add-hook 'helm-goto-line-before-hook 'helm-save-current-pos-to-mark-ring)
+
+    ;; show minibuffer history with Helm
+    (define-key minibuffer-local-map (kbd "M-p") 'helm-minibuffer-history)
+    (define-key minibuffer-local-map (kbd "M-n") 'helm-minibuffer-history)
+
+    (define-key global-map [remap find-tag] 'helm-etags-select)
+
+    (define-key global-map [remap list-buffers] 'helm-buffers-list)
+
+    (helm-mode 1)
+
+    (use-package helm-projectile
+      :init
+      (helm-projectile-on)
+      (setq projectile-completion-system 'helm)
+      (setq projectile-indexing-method 'alien))))
+
+
+(require 'helm-swoop)
+
+;; Change the keybinds to whatever you like :)
+(global-set-key (kbd "M-i") 'helm-swoop)
+(global-set-key (kbd "M-I") 'helm-swoop-back-to-last-point)
+(global-set-key (kbd "C-c M-i") 'helm-multi-swoop)
+(global-set-key (kbd "C-x M-i") 'helm-multi-swoop-all)
+
+;; When doing isearch, hand the word over to helm-swoop
+(define-key isearch-mode-map (kbd "M-i") 'helm-swoop-from-isearch)
+;; From helm-swoop to helm-multi-swoop-all
+(define-key helm-swoop-map (kbd "M-i") 'helm-multi-swoop-all-from-helm-swoop)
+;; When doing evil-search, hand the word over to helm-swoop
+;; (define-key evil-motion-state-map (kbd "M-i") 'helm-swoop-from-evil-search)
+
+;; Instead of helm-multi-swoop-all, you can also use helm-multi-swoop-current-mode
+(define-key helm-swoop-map (kbd "M-m") 'helm-multi-swoop-current-mode-from-helm-swoop)
+
+;; Move up and down like isearch
+(define-key helm-swoop-map (kbd "C-r") 'helm-previous-line)
+(define-key helm-swoop-map (kbd "C-s") 'helm-next-line)
+(define-key helm-multi-swoop-map (kbd "C-r") 'helm-previous-line)
+(define-key helm-multi-swoop-map (kbd "C-s") 'helm-next-line)
+
+;; Save buffer when helm-multi-swoop-edit complete
+(setq helm-multi-swoop-edit-save t)
+
+;; If this value is t, split window inside the current window
+(setq helm-swoop-split-with-multiple-windows nil)
+
+;; Split direcion. 'split-window-vertically or 'split-window-horizontally
+(setq helm-swoop-split-direction 'split-window-vertically)
+
+;; If nil, you can slightly boost invoke speed in exchange for text color
+(setq helm-swoop-speed-or-color nil)
+
+;; ;; Go to the opposite side of line from the end or beginning of line
+(setq helm-swoop-move-to-line-cycle t)
+
+;; Optional face for line numbers
+;; Face name is `helm-swoop-line-number-face`
+(setq helm-swoop-use-line-number-face t)
+
+;; If you prefer fuzzy matching
+(setq helm-swoop-use-fuzzy-match t)
 
 ;; Global configuration
 
@@ -175,7 +304,7 @@
  '(org-agenda-files (quote ("~/Nextcloud/tasks_2020.org.gpg")))
  '(package-selected-packages
    (quote
-    (treemacs-projectile sr-speedbar webpaste ccls dap-mode lsp-ui company-lsp magit-todos multiple-cursors eww-lnum company-c-headers pdf-tools editorconfig)))
+    (helm-company helm-flycheck helm-flyspell helm-swoop helm-projectile helm treemacs-projectile sr-speedbar webpaste ccls dap-mode lsp-ui company-lsp magit-todos multiple-cursors eww-lnum company-c-headers pdf-tools editorconfig)))
  '(safe-local-variable-values
    (quote
     ((eval ignore-errors
@@ -201,6 +330,19 @@
 	   (c-set-offset
 	    (quote inline-open)
 	    (quote 0)))))))
+
+(require 'helm-flymake)
+(require 'helm-flyspell)
+
+(require 'helm-flycheck) ;; Not necessary if using ELPA package
+ (eval-after-load 'flycheck
+   '(define-key flycheck-mode-map (kbd "C-c ! h") 'helm-flycheck))
+
+(autoload 'helm-company "helm-company") ;; Not necessary if using ELPA package
+(eval-after-load 'company
+  '(progn
+     (define-key company-mode-map (kbd "C-:") 'helm-company)
+     (define-key company-active-map (kbd "C-:") 'helm-company)))
 
 (require 'org)
 (define-key global-map "\C-cl" 'org-store-link)
