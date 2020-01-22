@@ -15,6 +15,11 @@
   '(ccls
     company-lsp
     editorconfig
+    helm
+    helm-lsp
+    helm-flycheck
+    helm-flymake
+    helm-flyspell
     lsp-mode
     lsp-ui
     pdf-tools
@@ -250,6 +255,24 @@
       ;; If you prefer fuzzy matching
       (setq helm-swoop-use-fuzzy-match t)))
 
+(use-package helm-flymake)
+(require 'helm-flymake)
+(use-package helm-flyspell)
+(require 'helm-flyspell)
+
+(use-package helm-flycheck)
+
+(require 'helm-flycheck) ;; Not necessary if using ELPA package
+ (eval-after-load 'flycheck
+   '(define-key flycheck-mode-map (kbd "C-c ! h") 'helm-flycheck))
+
+(autoload 'helm-company "helm-company") ;; Not necessary if using ELPA package
+(eval-after-load 'company
+  '(progn
+     (define-key company-mode-map (kbd "C-:") 'helm-company)
+     (define-key company-active-map (kbd "C-:") 'helm-company)))
+
+
 ;; Global configuration
 
 ; Show line numbers
@@ -333,19 +356,6 @@
 	    (quote inline-open)
 	    (quote 0)))))))
 
-(require 'helm-flymake)
-(require 'helm-flyspell)
-
-(require 'helm-flycheck) ;; Not necessary if using ELPA package
- (eval-after-load 'flycheck
-   '(define-key flycheck-mode-map (kbd "C-c ! h") 'helm-flycheck))
-
-(autoload 'helm-company "helm-company") ;; Not necessary if using ELPA package
-(eval-after-load 'company
-  '(progn
-     (define-key company-mode-map (kbd "C-:") 'helm-company)
-     (define-key company-active-map (kbd "C-:") 'helm-company)))
-
 (require 'org)
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
@@ -417,9 +427,10 @@
   ;;     (setq lsp-ui-doc-use-webkit t))
   ;; WORKAROUND Hide mode-line of the lsp-ui-imenu buffer
   ;; https://github.com/emacs-lsp/lsp-ui/issues/243
-  (defadvice lsp-ui-imenu (after hide-lsp-ui-imenu-mode-line activate)
-    (setq mode-line-format nil)))
+;  (defadvice lsp-ui-imenu (after hide-lsp-ui-imenu-mode-line activate)
+;    (setq mode-line-format nil)))
 ;; -LSPUI
+)
 
 (use-package company-lsp :commands company-lsp)
 
