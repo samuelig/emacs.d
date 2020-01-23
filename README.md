@@ -5,6 +5,9 @@ This is a copy of the emacs.d/ setup I use for C/C++ development.
 It installs the following packages from MELPA repository.
 
 * ccls
+* company
+* company-jedi
+* company-glsl
 * company-lsp
 * doom-modeline
 * doom-themes
