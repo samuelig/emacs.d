@@ -51,7 +51,7 @@
   :after treemacs projectile
   :ensure t)
 
-(global-set-key (kbd "<f9>") 'treemacs)
+(global-set-key (kbd "<f8>") 'treemacs)
 
 (use-package company
   :ensure t
@@ -379,7 +379,7 @@
 (global-unset-key (kbd "M-<down-mouse-1>"))
 (global-set-key (kbd "M-<mouse-1>") 'mc/add-cursor-on-click)
 
-(global-set-key (kbd "<f8>") 'sr-speedbar-toggle)
+(global-set-key (kbd "<f9>") 'sr-speedbar-toggle)
 
 (require 'magit-todos)
 (require 'hl-todo)
