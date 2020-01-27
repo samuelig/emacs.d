@@ -7,19 +7,24 @@
 
 (require 'package) ;; You might already have this line
 (add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
+             '("gnu" . "http://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives
+              '("melpa" . "http://melpa.org/packages/"))
 
 (package-initialize) ;; You might already have this line
 
 (defconst demo-packages
   '(ccls
     company-lsp
+    company-glsl
     editorconfig
     helm
     helm-lsp
     helm-flycheck
     helm-flymake
     helm-flyspell
+    helm-swoop
+    helm-projectile
     lsp-mode
     lsp-ui
     pdf-tools
