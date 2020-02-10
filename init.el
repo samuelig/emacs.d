@@ -29,6 +29,7 @@
     lsp-ui
     pdf-tools
     magit-todos
+    minimap
     multiple-cursors
     sr-speedbar
     markdown-mode
@@ -338,7 +339,7 @@
  '(org-agenda-files (quote ("~/Nextcloud/tasks_2020.org.gpg")))
  '(package-selected-packages
    (quote
-    (company-glsl helm-company helm-flycheck helm-flyspell helm-swoop helm-projectile helm treemacs-projectile sr-speedbar webpaste ccls dap-mode lsp-ui company-lsp magit-todos multiple-cursors eww-lnum company-c-headers pdf-tools editorconfig)))
+    (minimap company-glsl helm-company helm-flycheck helm-flyspell helm-swoop helm-projectile helm treemacs-projectile sr-speedbar webpaste ccls dap-mode lsp-ui company-lsp magit-todos multiple-cursors eww-lnum company-c-headers pdf-tools editorconfig)))
  '(safe-local-variable-values
    (quote
     ((eval ignore-errors
@@ -456,6 +457,8 @@
   :config
   (progn
     (setq webpaste-provider-priority '("dpaste.org"))))
+
+(global-set-key (kbd "<f10>") 'minimap-mode)
 
 ;; Miscelanea config
 
