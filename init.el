@@ -33,7 +33,8 @@
     multiple-cursors
     sr-speedbar
     markdown-mode
-    use-package))
+    use-package
+    xcscope))
 
 (defun install-packages ()
   "Install all required packages."
@@ -321,6 +322,10 @@
 (load-theme 'doom-one t)
 
 ;; Config packages
+
+(require 'xcscope)
+(add-hook 'c-mode-common-hook' (lambda () (require 'xcscope)))
+(cscope-setup)
 
 (add-hook 'c-mode-common-hook
 	  (lambda ()

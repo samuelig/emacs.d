@@ -28,6 +28,7 @@ It installs the following packages from MELPA repository.
 * treemacs-projectile
 * virtualenvwrapper
 * webpaste
+* xcscope
 
 ![Emacs screenshot](https://raw.githubusercontent.com/samuelig/emacs.d/master/emacs-screenshot.png)
 
@@ -38,6 +39,7 @@ It needs some system packages to work:
 * ```markdown``` for compiling markdown files.
 * ```bear``` for creating ```compile_commands.json``` files which are consumed by ccls for projects using make.
 * ```clang``` used by company-lsp if ccls is not present.
+* ```cscope```
 * ```python-jedi```, ```python3-jedi```, ```virtualenv``` for python.
 * ```ccls``` as C/C++/ObjC language server (for LSP).
 * ```global``` for creating GTAGS.
@@ -45,13 +47,13 @@ It needs some system packages to work:
 For Debian:
 
 ```
-$ sudo apt install markdown bear clang python-jedi python3-jedi virtualenv ccls global
+$ sudo apt install markdown bear clang python-jedi python3-jedi virtualenv global cscope ccls
 ```
 
 For Fedora:
 
 ```
-$ sudo dnf install perl-Text-Markdown bear clang python-jedi python3-jedi virtualenv ccls global
+$ sudo dnf install perl-Text-Markdown bear clang python-jedi python3-jedi virtualenv ccls global cscope
 ```
 
 ## Installation
