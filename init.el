@@ -517,3 +517,5 @@ directory."
                       :major-modes '(c-mode c++-mode)
                       :remote? t
                       :server-id 'ccls-remote))
+
+(setq projectile-indexing-method 'hybrid)
