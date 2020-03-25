@@ -519,3 +519,6 @@ directory."
                       :server-id 'ccls-remote))
 
 (setq projectile-indexing-method 'hybrid)
+
+;; Compilation output
+(setq compilation-scroll-output t)
