@@ -9,12 +9,12 @@ It installs the following packages from MELPA repository.
 * company-jedi
 * company-glsl
 * company-lsp
+* cscope
 * doom-modeline
 * doom-themes
 * editorconfig
 * elpy
 * flycheck
-* ggtags
 * helm
 * lsp-ui
 * magit-todos
@@ -42,18 +42,17 @@ It needs some system packages to work:
 * ```cscope```
 * ```python-jedi```, ```python3-jedi```, ```virtualenv``` for python.
 * ```ccls``` as C/C++/ObjC language server (for LSP).
-* ```global``` for creating GTAGS.
 
 For Debian:
 
 ```
-$ sudo apt install markdown bear clang python-jedi python3-jedi virtualenv global cscope ccls
+$ sudo apt install markdown bear clang python3-jedi virtualenv cscope ccls
 ```
 
 For Fedora:
 
 ```
-$ sudo dnf install perl-Text-Markdown bear clang python-jedi python3-jedi virtualenv ccls global cscope
+$ sudo dnf install perl-Text-Markdown bear clang python3-jedi virtualenv ccls cscope
 ```
 
 ## Installation
