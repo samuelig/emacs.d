@@ -347,7 +347,9 @@
     (minimap company-glsl helm-company helm-flycheck helm-flyspell helm-swoop helm-projectile helm treemacs-projectile sr-speedbar webpaste ccls dap-mode lsp-ui company-lsp magit-todos multiple-cursors eww-lnum company-c-headers pdf-tools editorconfig)))
  '(safe-local-variable-values
    (quote
-    ((eval ignore-errors
+    ((c-file-offsets
+      (arglist-cont-nonempty . ++))
+     (eval ignore-errors
 	   (require
 	    (quote whitespace))
 	   (whitespace-mode 1))
@@ -428,6 +430,7 @@
               ([remap xref-find-references] . lsp-ui-peek-find-references)
               ("C-c u" . lsp-ui-imenu))
   :custom
+  (lsp-ui-peek-fontify 'always)
   (lsp-ui-doc-enable t)
   (lsp-ui-doc-header t)
   (lsp-ui-doc-include-signature t)
