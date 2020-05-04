@@ -319,7 +319,7 @@
 ; Initialize doom-modeline.
 (require 'doom-modeline)
 (doom-modeline-mode 1)
-(load-theme 'doom-one t)
+(load-theme 'doom-dark+ t)
 
 ;; Config packages
 
@@ -341,6 +341,9 @@
  ;; If there is more than one, they won't work right.
  '(company-box-enable-icon t)
  '(company-box-show-single-candidate t)
+ '(custom-safe-themes
+   (quote
+    ("a339f231e63aab2a17740e5b3965469e8c0b85eccdfb1f9dbd58a30bdad8562b" default)))
  '(org-agenda-files (quote ("~/Nextcloud/tasks_2020.org.gpg")))
  '(package-selected-packages
    (quote
