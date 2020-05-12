@@ -528,3 +528,6 @@ directory."
 
 ;; Compilation output
 (setq compilation-scroll-output t)
+
+;; Set eww as default browser for emacs
+(setq browse-url-browser-function 'eww-browse-url)
