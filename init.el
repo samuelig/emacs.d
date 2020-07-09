@@ -14,7 +14,8 @@
 (package-initialize) ;; You might already have this line
 
 (defconst demo-packages
-  '(company-lsp
+  '(ccls
+    company-lsp
     company-glsl
     editorconfig
     helm
@@ -346,7 +347,7 @@
  '(org-agenda-files (quote ("~/Nextcloud/tasks_2020.org.gpg")))
  '(package-selected-packages
    (quote
-    (minimap company-glsl helm-company helm-flycheck helm-flyspell helm-swoop helm-projectile helm treemacs-projectile sr-speedbar webpaste dap-mode lsp-ui company-lsp magit-todos multiple-cursors eww-lnum company-c-headers pdf-tools editorconfig)))
+    (minimap company-glsl helm-company helm-flycheck helm-flyspell helm-swoop helm-projectile helm treemacs-projectile sr-speedbar webpaste ccls dap-mode lsp-ui company-lsp magit-todos multiple-cursors eww-lnum company-c-headers pdf-tools editorconfig)))
  '(safe-local-variable-values
    (quote
     ((c-file-offsets
@@ -456,6 +457,10 @@
 
 (provide 'init-lsp)
 
+(use-package ccls
+  :hook ((c-mode c++-mode objc-mode cuda-mode) .
+         (lambda () (require 'ccls) (lsp))))
+
 (use-package webpaste
   :ensure t
   :bind (("C-c C-p C-b" . webpaste-paste-buffer)
@@ -512,13 +517,12 @@ directory."
  '(lsp-ui-doc-background ((t (:background nil))))
  '(lsp-ui-doc-header ((t (:inherit (font-lock-string-face italic))))))
 
-(require 'lsp-clients)
  (lsp-register-client
      (make-lsp-client :new-connection (lsp-tramp-connection
-				       "/usr/bin/clangd")
+				       "/snap/bin/ccls")
                       :major-modes '(c-mode c++-mode)
                       :remote? t
-                      :server-id 'clangd-remote))
+                      :server-id 'ccls-remote))
 
 (setq projectile-indexing-method 'hybrid)
 
