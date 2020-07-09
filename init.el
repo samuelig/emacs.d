@@ -519,10 +519,10 @@ directory."
 
  (lsp-register-client
      (make-lsp-client :new-connection (lsp-tramp-connection
-				       "/snap/bin/ccls")
+				       "/usr/bin/clangd")
                       :major-modes '(c-mode c++-mode)
                       :remote? t
-                      :server-id 'ccls-remote))
+                      :server-id 'clangd-remote))
 
 (setq projectile-indexing-method 'hybrid)
 
