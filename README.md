@@ -46,20 +46,20 @@ It needs some system packages to work:
 For Debian:
 
 ```
-$ sudo apt install markdown bear clang python3-jedi virtualenv cscope ccls
+$ sudo apt install markdown bear clang python3-jedi virtualenv cscope ccls emacs
 ```
 
 For Fedora:
 
 ```
-$ sudo dnf install perl-Text-Markdown bear clang python3-jedi virtualenv ccls cscope
+$ sudo dnf install perl-Text-Markdown bear clang python3-jedi virtualenv ccls cscope emacs
 ```
 
 ## Installation
 
 To install it:
 
-```git clone git@github.com:samuelig/emacs.d.git .emacs.d/```
+```git clone https://github.com/samuelig/emacs.d.git .emacs.d/```
 
 And run emacs. It will automatically install everything.
 
