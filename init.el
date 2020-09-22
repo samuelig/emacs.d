@@ -20,7 +20,7 @@
     editorconfig
     helm
     helm-lsp
-    helm-flycheck
+;    helm-flycheck
     helm-flymake
     helm-flyspell
     helm-swoop
@@ -83,10 +83,10 @@
 
 (add-hook 'python-mode-hook 'my/python-mode-hook)
 
-(use-package flycheck
-  :ensure t
-  :init
-  (global-flycheck-mode t))
+;(use-package flycheck
+;  :ensure t
+;  :init
+;  (global-flycheck-mode t))
 
 (use-package elpy
   :ensure t
@@ -268,11 +268,11 @@
 (use-package helm-flyspell)
 (require 'helm-flyspell)
 
-(use-package helm-flycheck)
+;(use-package helm-flycheck)
 
-(require 'helm-flycheck) ;; Not necessary if using ELPA package
- (eval-after-load 'flycheck
-   '(define-key flycheck-mode-map (kbd "C-c ! h") 'helm-flycheck))
+;(require 'helm-flycheck) ;; Not necessary if using ELPA package
+; (eval-after-load 'flycheck
+;   '(define-key flycheck-mode-map (kbd "C-c ! h") 'helm-flycheck))
 
 (autoload 'helm-company "helm-company") ;; Not necessary if using ELPA package
 (eval-after-load 'company
@@ -347,35 +347,22 @@
     ("a339f231e63aab2a17740e5b3965469e8c0b85eccdfb1f9dbd58a30bdad8562b" default)))
  '(org-agenda-files (quote ("~/Nextcloud/tasks_2020.org.gpg")))
  '(package-selected-packages
-   (quote
-    (minimap company-glsl helm-company helm-flycheck helm-flyspell helm-swoop helm-projectile helm treemacs-projectile sr-speedbar webpaste ccls dap-mode lsp-ui company-lsp magit-todos multiple-cursors eww-lnum company-c-headers pdf-tools editorconfig)))
+   '(minimap company-glsl helm-company helm-flyspell helm-swoop helm-projectile helm treemacs-projectile sr-speedbar webpaste ccls dap-mode lsp-ui company-lsp magit-todos multiple-cursors eww-lnum company-c-headers pdf-tools editorconfig))
  '(safe-local-variable-values
-   (quote
-    ((c-file-offsets
+   '((c-file-offsets
       (arglist-cont-nonempty . ++))
      (eval ignore-errors
-	   (require
-	    (quote whitespace))
+	   (require 'whitespace)
 	   (whitespace-mode 1))
      (whitespace-line-column . 79)
      (whitespace-style face indentation)
      (eval progn
-	   (c-set-offset
-	    (quote case-label)
-	    (quote 0))
-	   (c-set-offset
-	    (quote innamespace)
-	    (quote 0))
-	   (c-set-offset
-	    (quote inline-open)
-	    (quote 0)))
+	   (c-set-offset 'case-label '0)
+	   (c-set-offset 'innamespace '0)
+	   (c-set-offset 'inline-open '0))
      (eval progn
-	   (c-set-offset
-	    (quote innamespace)
-	    (quote 0))
-	   (c-set-offset
-	    (quote inline-open)
-	    (quote 0)))))))
+	   (c-set-offset 'innamespace '0)
+	   (c-set-offset 'inline-open '0)))))
 
 (require 'org)
 (define-key global-map "\C-cl" 'org-store-link)
