@@ -538,3 +538,6 @@ directory."
 (add-hook 'meson-mode-hook 'company-mode)
 
 (global-display-line-numbers-mode)
+
+(global-set-key (quote [M-down]) (quote scroll-up-line))
+(global-set-key (quote [M-up]) (quote scroll-down-line))
