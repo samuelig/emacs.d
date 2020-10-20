@@ -536,3 +536,5 @@ directory."
 (define-key lsp-mode-map [remap xref-find-apropos] #'helm-lsp-workspace-symbol)
 
 (add-hook 'meson-mode-hook 'company-mode)
+
+(global-display-line-numbers-mode)
