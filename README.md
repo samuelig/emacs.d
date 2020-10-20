@@ -19,6 +19,7 @@ It installs the following packages from MELPA repository.
 * lsp-ui
 * magit-todos
 * markdown-mode
+* meson-mode
 * minimap
 * multiple-cursors
 * pdf-tools

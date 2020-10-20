@@ -29,6 +29,7 @@
     lsp-ui
     pdf-tools
     magit-todos
+    meson-mode
     minimap
     multiple-cursors
     sr-speedbar
@@ -533,3 +534,5 @@ directory."
 (setq browse-url-browser-function 'eww-browse-url)
 
 (define-key lsp-mode-map [remap xref-find-apropos] #'helm-lsp-workspace-symbol)
+
+(add-hook 'meson-mode-hook 'company-mode)
