@@ -518,7 +518,7 @@ directory."
 (setq compilation-scroll-output t)
 
 ;; Set eww as default browser for emacs
-(setq browse-url-browser-function 'eww-browse-url)
+;(setq browse-url-browser-function 'eww-browse-url)
 
 (define-key lsp-mode-map [remap xref-find-apropos] #'helm-lsp-workspace-symbol)
 
