@@ -1,38 +1,36 @@
 # emacs.d
 
+![Emacs screenshot](https://raw.githubusercontent.com/samuelig/emacs.d/master/emacs-screenshot.png)
+
 This is a copy of the emacs.d/ setup I use for C/C++ development.
 
 It installs the following packages from MELPA repository.
 
-* ccls
-* company
-* company-jedi
-* company-glsl
-* company-lsp
-* cscope
-* doom-modeline
-* doom-themes
-* editorconfig
-* elpy
-* flycheck
-* helm
-* lsp-ui
-* magit-todos
-* markdown-mode
-* meson-mode
-* minimap
-* multiple-cursors
-* pdf-tools
-* projectile
-* speedbar
-* use-package
-* treemacs-projectile
-* virtualenvwrapper
-* webpaste
-* xcscope
-
-![Emacs screenshot](https://raw.githubusercontent.com/samuelig/emacs.d/master/emacs-screenshot.png)
-
+* `ccls` package for this C/C++/ObjC language server (for LSP)
+* `company` text completion framework for emacs.
+* `company-jedi` company backend for jedi server (python).
+* `company-glsl` company backend for GLSL.
+* `company-lsp` company backend for Language Server Protocol (LSP)
+* `doom-modeline` fast mode-line for emacs.
+* `doom-themes` themes for doom.
+* `editorconfig` support for this coding style tool.
+* `elpy` emacs python development environment (easy way to install a fully featured python dev environment).
+* `flycheck` alternative to flymake. Syntax checking.
+* `helm` incremental completion and narrowing selection framework.
+* `lsp-ui` UI support for LSP (it shows declarations in a box)
+* `magit-todos` it shows TODOs present in the repository using magit (very powerful git client for emacs).
+* `markdown-mode` support for markdown.
+* `minimap` it shows a minimap of the buffer like vscode.
+* `multiple-cursors` adds support for multiple cursors.
+* `pdf-tools` adds support to view PDFs.
+* `projectile` it adds support for code projects in emacs.
+* `speedbar` it displays information of the current buffer, like the functions and definitions, so you can browse easily.
+* `use-package` package that facilitates the install and configuration of emacs packages.
+* `treemacs-projectile` package that adds support for tree-like view of projects.
+* `virtualenvwrapper` adds support for virtualenv on emacs.
+* `webpaste` a package that allows to paste code to dpaste.org.
+* `xcscope` adds support for cscope.
+ 
 ## Dependencies
 
 It needs some system packages to work:
@@ -40,7 +38,7 @@ It needs some system packages to work:
 * ```markdown``` for compiling markdown files.
 * ```bear``` for creating ```compile_commands.json``` files which are consumed by ccls for projects using make.
 * ```clang``` used by company-lsp if ccls is not present.
-* ```cscope```
+* ```cscope``` for looking for C/C++ definitions and calls. 
 * ```python-jedi```, ```python3-jedi```, ```virtualenv``` for python.
 * ```ccls``` as C/C++/ObjC language server (for LSP).
 
@@ -83,9 +81,10 @@ There are some commands to run after emacs finished installing the packages:
 * ```<F9>``` toggles speedbar window.
 * ```<F10>``` toggles minimap window.
 * Webpaste:
-  * ```C-c C-p C-r``` send region to dpaste.org.
-  * ```C-c C-p C-b``` send buffer to dpaste.org.
+  * ```C-c C-r``` send region to dpaste.org.
+  * ```C-c C-b``` send buffer to dpaste.org.
 * ```S-TAB``` inserts TAB inconditionally (specially useful for indexing code).
+* ```M-i``` fuzzy search in the same buffer.
 * ```M-.``` looks for code definitions, using ccls as backend (C/C++ projects).
 * ```M-?``` finds code references, using ccls as backend (C/C++ projects).
 * ```M-<mouse-1>``` adds new cursor (multiple-cursors). There are more keybindings in the init.d related to multiple-cursors package.
