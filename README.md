@@ -7,6 +7,7 @@ This is a copy of the emacs.d/ setup I use for C/C++ development.
 It installs the following packages from MELPA repository.
 
 * `ccls` package for this C/C++/ObjC language server (for LSP)
+* `centered-window` centers the text of the window like Zen Mode in Visual Studio Code.
 * `company` text completion framework for emacs.
 * `company-jedi` company backend for jedi server (python).
 * `company-glsl` company backend for GLSL.

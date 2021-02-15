@@ -15,6 +15,7 @@
 
 (defconst demo-packages
   '(ccls
+    centered-window
     company-lsp
     company-glsl
     editorconfig
