@@ -11,7 +11,6 @@ It installs the following packages from MELPA repository.
 * `company` text completion framework for emacs.
 * `company-jedi` company backend for jedi server (python).
 * `company-glsl` company backend for GLSL.
-* `company-lsp` company backend for Language Server Protocol (LSP)
 * `doom-modeline` fast mode-line for emacs.
 * `doom-themes` themes for doom.
 * `editorconfig` support for this coding style tool.
@@ -38,7 +37,7 @@ It needs some system packages to work:
 
 * ```markdown``` for compiling markdown files.
 * ```bear``` for creating ```compile_commands.json``` files which are consumed by ccls for projects using make.
-* ```clang``` used by company-lsp if ccls is not present.
+* ```clang``` used by lsp if ccls is not present.
 * ```cscope``` for looking for C/C++ definitions and calls. 
 * ```python-jedi```, ```python3-jedi```, ```virtualenv``` for python.
 * ```ccls``` as C/C++/ObjC language server (for LSP).

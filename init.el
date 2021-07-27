@@ -16,7 +16,6 @@
 (defconst demo-packages
   '(ccls
     centered-window
-    company-lsp
     company-glsl
     editorconfig
     helm
@@ -348,7 +347,7 @@
     ("a339f231e63aab2a17740e5b3965469e8c0b85eccdfb1f9dbd58a30bdad8562b" default)))
  '(org-agenda-files (quote ("~/Nextcloud/tasks_2020.org.gpg")))
  '(package-selected-packages
-   '(minimap company-glsl helm-company helm-flyspell helm-swoop helm-projectile helm treemacs-projectile sr-speedbar webpaste ccls dap-mode lsp-ui company-lsp magit-todos multiple-cursors eww-lnum company-c-headers pdf-tools editorconfig))
+   '(minimap company-glsl helm-company helm-flyspell helm-swoop helm-projectile helm treemacs-projectile sr-speedbar webpaste ccls dap-mode lsp-ui magit-todos multiple-cursors eww-lnum company-c-headers pdf-tools editorconfig))
  '(safe-local-variable-values
    '((c-file-offsets
       (arglist-cont-nonempty . ++))
@@ -441,8 +440,6 @@
 ;    (setq mode-line-format nil)))
 ;; -LSPUI
 )
-
-(use-package company-lsp :commands company-lsp)
 
 (provide 'init-lsp)
 
