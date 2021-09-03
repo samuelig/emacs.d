@@ -447,6 +447,9 @@
   :hook ((c-mode c++-mode objc-mode cuda-mode) .
          (lambda () (require 'ccls) (lsp))))
 
+;; Do not reformat blocks of code when executing c-electric-brace (})
+(setq lsp-enable-on-type-formatting nil)
+
 (use-package webpaste
   :ensure t
   :bind (("C-c C-b" . webpaste-paste-buffer)
