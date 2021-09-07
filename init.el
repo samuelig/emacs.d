@@ -27,12 +27,12 @@
     helm-projectile
     lsp-mode
     lsp-ui
+    lsp-treemacs
     pdf-tools
     magit-todos
     meson-mode
     minimap
     multiple-cursors
-    sr-speedbar
     markdown-mode
     use-package
     xcscope))
@@ -345,9 +345,9 @@
  '(custom-safe-themes
    (quote
     ("a339f231e63aab2a17740e5b3965469e8c0b85eccdfb1f9dbd58a30bdad8562b" default)))
- '(org-agenda-files (quote ("~/Nextcloud/tasks_2020.org.gpg")))
+ '(org-agenda-files (quote (""))) ;; Fill with org-agenda files
  '(package-selected-packages
-   '(minimap company-glsl helm-company helm-flyspell helm-swoop helm-projectile helm treemacs-projectile sr-speedbar webpaste ccls dap-mode lsp-ui magit-todos multiple-cursors eww-lnum company-c-headers pdf-tools editorconfig))
+   '(lsp-treemacs centered-window minimap company-glsl helm-company helm-flyspell helm-swoop helm-projectile helm treemacs-projectile webpaste ccls dap-mode lsp-ui magit-todos multiple-cursors eww-lnum company-c-headers pdf-tools editorconfig))
  '(safe-local-variable-values
    '((c-file-offsets
       (arglist-cont-nonempty . ++))
@@ -386,8 +386,6 @@
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 (global-unset-key (kbd "M-<down-mouse-1>"))
 (global-set-key (kbd "M-<mouse-1>") 'mc/add-cursor-on-click)
-
-(global-set-key (kbd "<f9>") 'sr-speedbar-toggle)
 
 (require 'magit-todos)
 (require 'hl-todo)
@@ -446,6 +444,10 @@
 (use-package ccls
   :hook ((c-mode c++-mode objc-mode cuda-mode) .
          (lambda () (require 'ccls) (lsp))))
+
+;; lsp-treemacs setup
+(lsp-treemacs-sync-mode 1)
+(global-set-key (kbd "<f9>") 'lsp-treemacs-symbols)
 
 ;; Do not reformat blocks of code when executing c-electric-brace (})
 (setq lsp-enable-on-type-formatting nil)

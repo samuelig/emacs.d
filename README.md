@@ -78,7 +78,7 @@ There are some commands to run after emacs finished installing the packages:
 * Added keybinding ```M-X``` to set working directory to apply other command. Very useful to execute ```M-x compile```.
 * Added support for opening encrypted (*.gpg) files.
 * ```<F8>``` toggles treemacs window.
-* ```<F9>``` toggles speedbar window.
+* ```<F9>``` shows lsp-treemacs-symbols window.
 * ```<F10>``` toggles minimap window.
 * Webpaste:
   * ```C-c C-r``` send region to dpaste.org.
