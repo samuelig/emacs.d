@@ -343,11 +343,10 @@
  '(company-box-enable-icon t)
  '(company-box-show-single-candidate t)
  '(custom-safe-themes
-   (quote
-    ("a339f231e63aab2a17740e5b3965469e8c0b85eccdfb1f9dbd58a30bdad8562b" default)))
- '(org-agenda-files (quote (""))) ;; Fill with org-agenda files
+   '("a339f231e63aab2a17740e5b3965469e8c0b85eccdfb1f9dbd58a30bdad8562b" default))
+ '(org-agenda-files '(""))
  '(package-selected-packages
-   '(lsp-treemacs centered-window minimap company-glsl helm-company helm-flyspell helm-swoop helm-projectile helm treemacs-projectile webpaste ccls dap-mode lsp-ui magit-todos multiple-cursors eww-lnum company-c-headers pdf-tools editorconfig))
+   '(webpaste rustic debpaste which-key org-bullets lsp-treemacs centered-window minimap company-glsl helm-company helm-flyspell helm-swoop helm-projectile helm treemacs-projectile dap-mode lsp-ui magit-todos multiple-cursors eww-lnum company-c-headers pdf-tools editorconfig))
  '(safe-local-variable-values
    '((c-file-offsets
       (arglist-cont-nonempty . ++))
@@ -362,7 +361,9 @@
 	   (c-set-offset 'inline-open '0))
      (eval progn
 	   (c-set-offset 'innamespace '0)
-	   (c-set-offset 'inline-open '0)))))
+	   (c-set-offset 'inline-open '0))))
+ '(warning-suppress-log-types '((use-package) (use-package)))
+ '(warning-suppress-types '((use-package))))
 
 (require 'org)
 (define-key global-map "\C-cl" 'org-store-link)
@@ -531,3 +532,22 @@ directory."
 
 (global-set-key (quote [M-down]) (quote scroll-up-line))
 (global-set-key (quote [M-up]) (quote scroll-down-line))
+
+(setq flymake-start-on-flymake-mode nil)
+
+;; Add diary entries into org-mode agenda
+(setq org-agenda-include-diary t)
+
+;; Enable which-key
+(which-key-mode)
+
+;; Set applications to open specific files
+(setq org-file-apps
+   '(("\\.odt\\'" . default)
+     ("\\.ods\\'" . default)))
+
+;; UTF-8 by default
+(set-selection-coding-system 'utf-8-emacs)
+
+;; Rust
+(use-package rustic)
